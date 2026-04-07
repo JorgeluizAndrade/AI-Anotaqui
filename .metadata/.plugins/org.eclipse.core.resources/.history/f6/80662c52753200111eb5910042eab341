@@ -1,0 +1,14 @@
+package com.easy.annotations.domain.model;
+
+import java.time.Instant;
+
+public class AiOutputs {
+	private Integer id;
+	private String title;
+	private Status status;
+	private String err_message;
+	private String raw_text;
+	private Integer uploadId;
+	private Instant createdAt;
+	private Instant updatedAt;
+}

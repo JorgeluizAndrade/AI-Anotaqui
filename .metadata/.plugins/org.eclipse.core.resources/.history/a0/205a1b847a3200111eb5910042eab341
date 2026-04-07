@@ -1,0 +1,10 @@
+package com.easy.annotations.domain.event;
+
+import lombok.Getter;
+
+@Getter
+public class UploadCreated {
+
+	
+	
+}

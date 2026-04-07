@@ -1,0 +1,97 @@
+package com.easy.annotations.domain.model;
+
+import java.time.Instant;
+
+public class AiOutputs {
+	private Integer id;
+	private Integer transcriptionId;
+	private String title;
+	private Status status;
+	
+	private String errMessage;
+	
+	private String prompt;
+	private String model;
+	private int version;
+	private String type;
+	
+	private String textOutput;
+	
+	private Instant createdAt;
+	private Instant updatedAt;
+	
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Integer getTranscriptionId() {
+		return transcriptionId;
+	}
+	public void setTranscriptionId(Integer transcriptionId) {
+		this.transcriptionId = transcriptionId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	public String getErrMessage() {
+		return errMessage;
+	}
+	public void setErr_message(String errMessage ) {
+		this.errMessage = errMessage ;
+	}
+	public String getPrompt() {
+		return prompt;
+	}
+	public void setPrompt(String prompt) {
+		this.prompt = prompt;
+	}
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getTextOutput() {
+		return textOutput;
+	}
+	public void setTextOutput(String textOutput) {
+		this.textOutput = textOutput;
+	}
+	public Instant getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Instant createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Instant getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Instant updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	
+}

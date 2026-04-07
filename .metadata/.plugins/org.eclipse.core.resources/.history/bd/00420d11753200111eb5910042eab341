@@ -1,0 +1,9 @@
+package com.easy.annotations.domain.model;
+
+public class Transcriptions {
+
+	private Integer id;
+	private String title;
+	private String raw_text;
+	
+}

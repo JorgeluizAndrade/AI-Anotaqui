@@ -1,0 +1,6 @@
+package com.easy.annotations.domain.model;
+
+public class Transcriptions {
+
+	
+}

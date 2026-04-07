@@ -1,0 +1,9 @@
+package com.easy.annotations.domain.repository;
+
+import com.easy.annotations.domain.model.Upload;
+
+public interface IUploadRepository {
+	void save(Upload upload);
+	
+	Upload get
+}
