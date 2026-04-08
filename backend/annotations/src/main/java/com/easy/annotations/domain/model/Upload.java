@@ -2,6 +2,7 @@ package com.easy.annotations.domain.model;
 
 import java.time.Instant;
 
+
 public class Upload {
 	private Integer id;
 	private String fileName;
@@ -10,6 +11,8 @@ public class Upload {
 	private Instant createdAt;
 	private Instant updatedAt;
 	
+	
+
 	
 	public Integer getId() {
 		return id;

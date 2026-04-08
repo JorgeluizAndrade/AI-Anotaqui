@@ -1,8 +1,0 @@
-package com.easy.annotations.domain.model;
-
-public class Upload {
-	private Integer id;
-	private String fileName;
-	private String filaPath;
-	
-}

@@ -1,5 +1,0 @@
-package com.easy.annotations.domain.model;
-
-public enum Status {
-	
-}

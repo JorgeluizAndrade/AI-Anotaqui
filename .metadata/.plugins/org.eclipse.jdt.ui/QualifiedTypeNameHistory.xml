@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="com.easy.annotations.domain.model.Status"/>
     <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.EnableAsync"/>
-    <fullyQualifiedTypeName name="com.easy.annotations.domain.model.Upload"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="com.easy.annotations.domain.model.Transcriptions"/>
     <fullyQualifiedTypeName name="com.easy.annotations.domain.repository.IAiOutputsRepository"/>
@@ -10,4 +9,9 @@
     <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="lombok.ToString"/>
     <fullyQualifiedTypeName name="java.time.Instant"/>
+    <fullyQualifiedTypeName name="com.easy.annotations.domain.repository.IUploadRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
+    <fullyQualifiedTypeName name="org.springframework.context.ApplicationEventPublisher"/>
+    <fullyQualifiedTypeName name="com.easy.annotations.domain.model.Upload"/>
 </qualifiedTypeNameHistroy>

@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/home/jojo/projects/anotaqui/backend/annotations"/>
 			<item value="/home/jojo/projects/anotaqui/annotations"/>
 		</list>
 		<list key="projectNameTemplate">

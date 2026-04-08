@@ -23,7 +23,7 @@ public class UploadCreated {
 		this.id = id;
 		this.fileName = fileName;
 		this.filePath = filePath;
-		this.status = status;
+		this.status = status.DONE;
 		this.createdAt = Instant.now();
 	}
 }
