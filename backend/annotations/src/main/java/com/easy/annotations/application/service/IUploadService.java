@@ -6,4 +6,5 @@ import com.easy.annotations.domain.model.Upload;
 
 public interface IUploadService {
 	Upload save(MultipartFile file);
+	Upload findById(Integer id);
 }
