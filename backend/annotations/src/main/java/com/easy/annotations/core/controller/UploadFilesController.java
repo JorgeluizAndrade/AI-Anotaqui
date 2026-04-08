@@ -25,6 +25,8 @@ public class UploadFilesController {
 		try {
 
 			String contentType = file.getContentType();
+			
+			System.out.println(contentType);
 
 			if (!contentType.equals("audio/mpeg") && !contentType.equals("audio/mp4")) {
 				return ResponseEntity.badRequest().body("Invalid format.");

@@ -36,27 +36,42 @@ public class UploadFileUseCase {
 
 	public Upload uploadFile(MultipartFile file) {
 		log.info("Uploading file: {}", file.getOriginalFilename());
+	
+		String contentType = file.getContentType();
+
+		log.info("Content Type of file: {}", contentType);
 
 		try {
+		
 			Upload uplaod = new Upload();
 
-			// fazer um mapper
-			uplaod.setFileName(file.getName());
+			uplaod.setFileName(file.getOriginalFilename());
 			uplaod.setFilePath(rootLocation.toString());
 			uplaod.setStatus(Status.PROCESSING);
 		
 			Upload saved = uploadRepository.save(uplaod);
-
+			
 			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()),
 					StandardCopyOption.REPLACE_EXISTING);
+			
+						
+			log.info("Persisted file ID : {}", saved.getId());
+			log.info("Persisted file NAME: {}", saved.getFileName());
+			log.info("Persisted file STATUS: {}", saved.getStatus());
 
+			
+
+			
 			UploadCreated event = new UploadCreated(saved.getId(), saved.getFileName(), saved.getFilePath(),
 					Status.DONE, uplaod.getCreatedAt());
 
 			eventPublisher.publishEvent(event);
 
-			log.info("OrderCreatedEvent published: {}", event.getFileName(), "ID: {}", event.getId());
-
+			log.info("OrderCreatedEvent published name: {}", event.getFileName());
+			log.info("OrderCreatedEvent published ID: {}", event.getId());
+			log.info("Persisted file STATUS: {}", event.getStatus());
+			
+					
 			return saved;
 		} catch (IOException e) {
 			throw new RuntimeException("Falha ao salvar", e);
