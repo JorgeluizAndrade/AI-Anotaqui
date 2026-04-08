@@ -1,9 +1,17 @@
 package com.easy.annotations.application.usecase;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.time.Instant;
+
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.easy.annotations.UploadDto;
+import com.easy.annotations.core.dto.UploadDto;
 import com.easy.annotations.domain.event.UploadCreated;
 import com.easy.annotations.domain.model.Status;
 import com.easy.annotations.domain.model.Upload;
@@ -11,44 +19,48 @@ import com.easy.annotations.domain.repository.IUploadRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Component
 @Slf4j
 public class UploadFileUseCase {
-	
-	private final IUploadRepository uploadRepository;
-    private final ApplicationEventPublisher eventPublisher;
 
-	
+	private final IUploadRepository uploadRepository;
+	private final ApplicationEventPublisher eventPublisher;
+
+	private final Path rootLocation = Paths.get("upload-dir");
+
 	public UploadFileUseCase(IUploadRepository uploadRepository, ApplicationEventPublisher eventPublisher) {
 		// TODO Auto-generated constructor stub
-		this.uploadRepository =  uploadRepository;
+		this.uploadRepository = uploadRepository;
 		this.eventPublisher = eventPublisher;
 	}
-	
-	public Upload uploadFile(UploadDto uploadDto) {		
-        log.info("Uploading file: {}", uploadDto.fileName());
-		// como fazer upload de arquivos mp3 ou mp4 em spring boot.
-        Upload uplaod = new Upload();
-        
-        
-        // fazer um mapper
-        uplaod.setFileName(uploadDto.fileName());
-        uplaod.setFilePath(uploadDto.filePath());     
-        uplaod.setStatus(Status.PROCESSING);
-        
 
-        Upload saved = uploadRepository.save(uplaod);
-        
-      
-        UploadCreated event = new UploadCreated(saved.getId(), saved.getFileName(), saved.getFilePath(), Status.DONE);
-      
-        
-        eventPublisher.publishEvent(event);        
-        
-        log.info("OrderCreatedEvent published: {}", event.getFileName(), "ID: {}",event.getId());
-        
-        
- 		return saved;
+	public Upload uploadFile(MultipartFile file) {
+		log.info("Uploading file: {}", file.getOriginalFilename());
+
+		try {
+			Upload uplaod = new Upload();
+
+			// fazer um mapper
+			uplaod.setFileName(file.getName());
+			uplaod.setFilePath(rootLocation.toString());
+			uplaod.setStatus(Status.PROCESSING);
+		
+			Upload saved = uploadRepository.save(uplaod);
+
+			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()),
+					StandardCopyOption.REPLACE_EXISTING);
+
+			UploadCreated event = new UploadCreated(saved.getId(), saved.getFileName(), saved.getFilePath(),
+					Status.DONE, uplaod.getCreatedAt());
+
+			eventPublisher.publishEvent(event);
+
+			log.info("OrderCreatedEvent published: {}", event.getFileName(), "ID: {}", event.getId());
+
+			return saved;
+		} catch (IOException e) {
+			throw new RuntimeException("Falha ao salvar", e);
+		}
+
 	}
 }

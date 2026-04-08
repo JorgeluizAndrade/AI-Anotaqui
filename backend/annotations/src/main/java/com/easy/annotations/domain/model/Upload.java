@@ -8,11 +8,9 @@ public class Upload {
 	private String fileName;
 	private String filePath;
 	private Status status;
-	private Instant createdAt;
-	private Instant updatedAt;
+	private Instant createdAt = Instant.now();
+	private Instant updatedAt = Instant.now();
 	
-	
-
 	
 	public Integer getId() {
 		return id;

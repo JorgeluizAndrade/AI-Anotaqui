@@ -1,6 +1,8 @@
 package com.easy.annotations.domain.repository;
 
+
 import com.easy.annotations.domain.model.Upload;
+
 
 public interface IUploadRepository {
 	Upload save(Upload upload);

@@ -18,12 +18,12 @@ public class UploadCreated {
 	private final Instant createdAt;
 
 	
-	public UploadCreated(Integer id, String fileName, String filePath, Status status) {
+	public UploadCreated(Integer id, String fileName, String filePath, Status status, Instant createdAt) {
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.fileName = fileName;
 		this.filePath = filePath;
 		this.status = status.DONE;
-		this.createdAt = Instant.now();
+		this.createdAt = createdAt;
 	}
 }
