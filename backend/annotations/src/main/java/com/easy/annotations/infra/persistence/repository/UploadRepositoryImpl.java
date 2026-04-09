@@ -9,7 +9,6 @@ import com.easy.annotations.domain.repository.IUploadRepository;
 import com.easy.annotations.infra.persistence.entity.UploadEntity;
 import com.easy.annotations.infra.persistence.mapper.UploadMapper;
 
-
 @Repository
 public class UploadRepositoryImpl implements IUploadRepository {
 
@@ -27,8 +26,8 @@ public class UploadRepositoryImpl implements IUploadRepository {
 	}
 
 	@Override
-	public Upload getUploadById(Integer id) {
-		Optional<UploadEntity> entityOpt = jpaRepository.findById(id);
+	public Upload getUploadByFilename(String filename) {
+		Optional<UploadEntity> entityOpt = jpaRepository.findByFileName(filename);
 		return entityOpt.map(UploadMapper::toDomain).orElse(null);
 	}
 

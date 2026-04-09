@@ -7,5 +7,5 @@ import com.easy.annotations.domain.model.Upload;
 public interface IUploadRepository {
 	Upload save(Upload upload);
 	
-	Upload getUploadById(Integer id);
+	Upload getUploadByFilename(String filename);
 }

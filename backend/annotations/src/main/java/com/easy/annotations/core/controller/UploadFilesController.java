@@ -1,5 +1,8 @@
 package com.easy.annotations.core.controller;
 
+import java.net.MalformedURLException;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.easy.annotations.application.service.UploadService;
@@ -28,7 +32,7 @@ public class UploadFilesController {
 		try {
 
 			String contentType = file.getContentType();
-			
+
 			System.out.println(contentType);
 
 			if (!contentType.equals("audio/mpeg") && !contentType.equals("audio/mp4")) {
@@ -44,9 +48,18 @@ public class UploadFilesController {
 		}
 
 	}
-	
-	@GetMapping("find/{id}")
-	public ResponseEntity<Upload>  findById(@PathVariable Integer id){
-		return ResponseEntity.ok(uploadService.findById(id));
+
+	@GetMapping("/{filename:.+}")
+	@ResponseBody
+	public ResponseEntity<Upload> serveFile(@PathVariable String filename) throws MalformedURLException {
+
+		Upload file = uploadService.findFile(filename);
+
+		if (file == null)
+			return ResponseEntity.notFound().build();
+
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFileName() + "\"")
+				.body(file);
 	}
 }
