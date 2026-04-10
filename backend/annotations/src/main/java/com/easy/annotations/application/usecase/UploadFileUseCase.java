@@ -14,6 +14,7 @@ import com.easy.annotations.domain.event.UploadCreated;
 import com.easy.annotations.domain.model.Status;
 import com.easy.annotations.domain.model.Upload;
 import com.easy.annotations.domain.repository.IUploadRepository;
+import com.easy.annotations.queue.EventBus;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,14 +23,15 @@ import lombok.extern.slf4j.Slf4j;
 public class UploadFileUseCase {
 
 	private final IUploadRepository uploadRepository;
-	private final ApplicationEventPublisher eventPublisher;
-
+	private final EventBus eventBus;
+	
+	
 	private final Path rootLocation = Paths.get("upload-dir");
 
-	public UploadFileUseCase(IUploadRepository uploadRepository, ApplicationEventPublisher eventPublisher) {
+	public UploadFileUseCase(IUploadRepository uploadRepository, EventBus eventBus) {
 		// TODO Auto-generated constructor stub
 		this.uploadRepository = uploadRepository;
-		this.eventPublisher = eventPublisher;
+		this.eventBus = eventBus;
 	}
 
 	public Upload uploadFile(MultipartFile file) {
@@ -44,7 +46,8 @@ public class UploadFileUseCase {
 			Upload uplaod = new Upload();
 
 			uplaod.setFileName(file.getOriginalFilename());
-			uplaod.setFilePath(rootLocation.toString());
+			Path filePath = rootLocation.resolve(file.getOriginalFilename());
+			uplaod.setFilePath(filePath.toString());
 			uplaod.setStatus(Status.PROCESSING);
 
 			Upload saved = uploadRepository.save(uplaod);
@@ -59,7 +62,7 @@ public class UploadFileUseCase {
 			UploadCreated event = new UploadCreated(saved.getId(), saved.getFileName(), saved.getFilePath(),
 					Status.DONE, uplaod.getCreatedAt());
 
-			eventPublisher.publishEvent(event);
+			eventBus.publish(event);
 
 			log.info("OrderCreatedEvent published name: {}", event.getFileName());
 			log.info("OrderCreatedEvent published ID: {}", event.getId());
