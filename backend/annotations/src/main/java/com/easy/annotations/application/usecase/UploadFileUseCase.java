@@ -14,7 +14,7 @@ import com.easy.annotations.domain.event.UploadCreated;
 import com.easy.annotations.domain.model.Status;
 import com.easy.annotations.domain.model.Upload;
 import com.easy.annotations.domain.repository.IUploadRepository;
-import com.easy.annotations.queue.EventBus;
+import com.easy.annotations.infra.queue.EventBus;
 
 import lombok.extern.slf4j.Slf4j;
 

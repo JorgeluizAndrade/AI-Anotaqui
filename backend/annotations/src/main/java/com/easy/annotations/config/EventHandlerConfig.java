@@ -2,8 +2,8 @@ package com.easy.annotations.config;
 
 import org.springframework.context.annotation.Configuration;
 
-import com.easy.annotations.queue.EventHandler;
-import com.easy.annotations.queue.EventTypeResolver;
+import com.easy.annotations.infra.queue.EventHandler;
+import com.easy.annotations.infra.queue.EventTypeResolver;
 
 import java.util.HashMap;
 import java.util.List;

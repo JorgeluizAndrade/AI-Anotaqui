@@ -1,4 +1,4 @@
-package com.easy.annotations.queue;
+package com.easy.annotations.infra.queue;
 
 import java.util.Map;
 
