@@ -5,6 +5,15 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.springframework.stereotype.Component;
 
+/*
+ * Blocking queues from the java.util.concurrent package are 
+ * often a good fit for this kind of setup. 
+ * They handle thread coordination for you, so producers will 
+ * naturally pause when the queue is full and consumers 
+ * will pause when it’s empty. This prevents busy waiting and keeps 
+ * CPU usage reasonable without extra work on your part. 
+ */
+
 @Component
 public class InMemoryQueue {
 
