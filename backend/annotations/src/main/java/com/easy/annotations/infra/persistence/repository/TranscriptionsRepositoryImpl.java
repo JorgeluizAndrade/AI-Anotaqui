@@ -17,8 +17,9 @@ public class TranscriptionsRepositoryImpl implements ITranscriptionsRepository {
     }
 
     @Override
-    public void save(Transcriptions transcriptions) {
+    public Transcriptions save(Transcriptions transcriptions) {
         TranscriptionsEntity entity = TranscriptionsMapper.toEntity(transcriptions);
-        jpaRepository.save(entity);
+        TranscriptionsEntity saved = jpaRepository.save(entity);
+        return TranscriptionsMapper.toDomain(saved);
     }
 }
