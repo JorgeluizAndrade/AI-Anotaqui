@@ -1,0 +1,24 @@
+package com.easy.annotations.infra.persistence.repository;
+
+import org.springframework.stereotype.Repository;
+
+import com.easy.annotations.domain.model.Transcriptions;
+import com.easy.annotations.domain.repository.ITranscriptionsRepository;
+import com.easy.annotations.infra.persistence.entity.TranscriptionsEntity;
+import com.easy.annotations.infra.persistence.mapper.TranscriptionsMapper;
+
+@Repository
+public class TranscriptionsRepositoryImpl implements ITranscriptionsRepository {
+
+    private final TranscriptionsJpaRepository jpaRepository;
+
+    public TranscriptionsRepositoryImpl(TranscriptionsJpaRepository jpaRepository) {
+        this.jpaRepository = jpaRepository;
+    }
+
+    @Override
+    public void save(Transcriptions transcriptions) {
+        TranscriptionsEntity entity = TranscriptionsMapper.toEntity(transcriptions);
+        jpaRepository.save(entity);
+    }
+}
