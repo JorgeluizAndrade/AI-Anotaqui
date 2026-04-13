@@ -10,8 +10,8 @@ public class Transcriptions {
 	private String errMessage;
 	private String rawText;
 	private Integer uploadId;
-	private Instant createdAt;
-	private Instant updatedAt;
+	private Instant createdAt = Instant.now();
+	private Instant updatedAt = Instant.now();
 	
 	
 	public Integer getId() {

@@ -20,7 +20,7 @@ public class UploadCreatedHandler implements EventHandler<UploadCreated> {
 	public void handle(UploadCreated event) {
 		TranscriptionsRequested next = new TranscriptionsRequested(event.getId(), event.getFilePath(),
 				event.getFileName());
-
+ 
 		eventBus.publish(next);
 	}
 }

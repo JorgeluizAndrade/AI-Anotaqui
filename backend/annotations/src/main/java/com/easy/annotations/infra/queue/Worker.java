@@ -28,6 +28,7 @@ public class Worker {
     private void processLoop() {
         while (true) {
             Object event = queue.dequeue();
+            log.info("Dispashed event IN WORKER: {}", event);
             dispatch(event);
         }
     }
