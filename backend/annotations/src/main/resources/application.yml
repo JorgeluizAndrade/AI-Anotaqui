@@ -46,8 +46,6 @@ logging:
     org.hibernate.SQL: DEBUG
     org.hibernate.orm.jdbc.bind: TRACE
 
-
-	
 gemini:
   api-url: https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent
   api-key: ${GEMINI_API_KEY:}

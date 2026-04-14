@@ -37,20 +37,19 @@ public class UploadFileUseCase {
 	public Upload uploadFile(MultipartFile file) {
 		log.info("Uploading file: {}", file.getOriginalFilename());
 
-		String contentType = file.getContentType();
+		Upload uplaod = new Upload();
 
-		log.info("Content Type of file: {}", contentType);
-
+		uplaod.setFileName(file.getOriginalFilename());
+		Path filePath = rootLocation.resolve(file.getOriginalFilename());
+		uplaod.setFilePath(filePath.toString());
+		uplaod.setStatus(Status.PROCESSING);
+			
+		uplaod = uploadRepository.save(uplaod);
+		
 		try {
+			uplaod.setStatus(Status.DONE);
 
-			Upload uplaod = new Upload();
-
-			uplaod.setFileName(file.getOriginalFilename());
-			Path filePath = rootLocation.resolve(file.getOriginalFilename());
-			uplaod.setFilePath(filePath.toString());
-			uplaod.setStatus(Status.PROCESSING);
-
-			Upload saved = uploadRepository.save(uplaod);
+			var saved = uploadRepository.save(uplaod);
 
 			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()),
 					StandardCopyOption.REPLACE_EXISTING);
