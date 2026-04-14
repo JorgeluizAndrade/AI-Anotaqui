@@ -28,11 +28,11 @@ public class AiOutputsRepositoryImpl implements IAiOutputsRepository {
     }
 
 	@Override
-	public AiOutputs getById(Integer id) {
+	public Optional<AiOutputs> getById(Integer id) {
 		// TODO Auto-generated method stub
 		Optional<AiOutputsEntity> entityOpt = jpaRepository.findById(id);
 	
-		return entityOpt.map(AiOutputsMapper::toDomain).orElse(null);
+		return Optional.of(entityOpt.map(AiOutputsMapper::toDomain).orElse(null));
 	}
 
 	@Override

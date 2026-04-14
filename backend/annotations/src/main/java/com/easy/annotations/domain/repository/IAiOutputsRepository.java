@@ -8,7 +8,7 @@ import com.easy.annotations.domain.model.AiOutputs;
 public interface IAiOutputsRepository {
     AiOutputs save(AiOutputs aiOutputs);
     
-    AiOutputs getById(Integer id);
+    Optional<AiOutputs> getById(Integer id);
     
     List<AiOutputs> findAllAiOutputs();
 }

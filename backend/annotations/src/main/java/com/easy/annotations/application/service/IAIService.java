@@ -8,5 +8,7 @@ public interface IAIService {
     AiOutputs getOutput(Integer id);
 
     List<AiOutputs> findAllOutputs();
+    
+    AiOutputs updatePartial(Integer id, AiOutputs partialUpdate);
 	
 }

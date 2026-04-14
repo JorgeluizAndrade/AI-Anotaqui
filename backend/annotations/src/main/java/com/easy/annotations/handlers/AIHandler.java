@@ -1,6 +1,8 @@
 package com.easy.annotations.handlers;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -128,7 +130,7 @@ public class AIHandler implements EventHandler<AIRequested> {
 
 			aiOutput.setPrompt(prompt);
 			aiOutput.setTextOutput(analysisResult);
-			aiOutput.setTitle(extractTitle(analysisResult));
+			aiOutput.setTitle("Anotaqui > " + nameTitle(Instant.now()));
 			aiOutput.setStatus(Status.DONE);
 			aiOutput.setErr_message(null);
 			aiOutput.setUpdatedAt(Instant.now());
@@ -147,14 +149,10 @@ public class AIHandler implements EventHandler<AIRequested> {
 		}
 	}
 
-	private String extractTitle(String output) {
-		if (output == null || output.isBlank()) {
-			return "AI Analysis";
-		}
-
-		String firstLine = output.lines().map(String::trim).filter(line -> !line.isBlank()).findFirst()
-				.orElse("AI Analysis");
-
-		return firstLine.replace("**", "").replace("#", "").replace("Title:", "").replace("Título:", "").trim();
+	private String nameTitle(Instant output) {
+		  DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+	                .withZone(ZoneId.systemDefault());
+		
+	       return formatador.format(output);
 	}
 }

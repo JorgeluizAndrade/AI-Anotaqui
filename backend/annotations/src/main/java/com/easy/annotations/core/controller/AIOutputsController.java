@@ -6,7 +6,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.easy.annotations.application.service.IAIService;
@@ -32,6 +34,14 @@ public class AIOutputsController {
 	public ResponseEntity<List<AiOutputs>> getAll() {
 		List<AiOutputs> outputs = service.findAllOutputs();
 		return ResponseEntity.ok().header(HttpHeaders.ACCEPT).body(outputs);
+	}
+
+	@PatchMapping("/{id}")
+	public ResponseEntity<AiOutputs> updatePartial(@PathVariable Integer id, @RequestBody AiOutputs aiOutputs) {
+		var att = service.updatePartial(id, aiOutputs);
+
+		return ResponseEntity.ok(att);
+
 	}
 
 }
