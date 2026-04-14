@@ -65,6 +65,7 @@ public class GeminiAIEngine implements AIEngine {
                 "contents", List.of(
                         Map.of("parts", List.of(Map.of("text", PROMPT_TEMPLATE.formatted(text))))));
 
+        
         ResponseEntity<Map> response = restTemplate.postForEntity(apiUrl, new HttpEntity<>(body, headers), Map.class);
 
         return extractText(response.getBody());
