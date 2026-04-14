@@ -42,7 +42,7 @@ public class GeminiAIEngine implements AIEngine {
 
     public GeminiAIEngine(
             RestTemplateBuilder restTemplateBuilder,
-            @Value("${gemini.api-url:https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent}") String apiUrl,
+            @Value("${gemini.api-url:https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent}") String apiUrl,
             @Value("${gemini.api-key:}") String apiKey) {
         this.restTemplate = restTemplateBuilder.build();
         this.apiUrl = apiUrl;
@@ -51,6 +51,8 @@ public class GeminiAIEngine implements AIEngine {
 
     @Override
     public String analyze(String text) {
+    	System.out.println("API KEY: " + apiKey);
+    	
         if (apiKey == null || apiKey.isBlank()) {
             throw new IllegalStateException("Gemini API key is not configured. Set gemini.api-key.");
         }
