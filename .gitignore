@@ -46,6 +46,7 @@ local.properties
 *.iws
 
 /backend/annotations/upload-dir
+/backend/annotations/annotations.db
 
 .DS_Store
 Thumbs.db
