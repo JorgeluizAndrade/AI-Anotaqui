@@ -15,26 +15,51 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class GeminiAIEngine implements AIEngine {
 
-    private static final String PROMPT_TEMPLATE = """
-            Analyze the following transcription from a lecture or sermon.
+	private static final String PROMPT_TEMPLATE = """
+			You are an expert analyst of lectures and sermons, specialized in extracting structured knowledge and deep insights.
 
-            Extract:
-            1. Main ideas
-            2. Key insights
-            3. Reflections
-            4. Practical applications
+			Analyze the transcription below and perform a structured synthesis.
 
-            Return your answer with this structure:
-            - Title
-            - Key points
-            - Reflection
-            - Practical application
+			Your objectives:
+			- Identify the core message and central theme
+			- Extract the most relevant ideas (not trivial or repetitive points)
+			- Derive meaningful insights (interpretation, not just repetition)
+			- Generate thoughtful reflections (philosophical, emotional, or intellectual)
+			- Provide practical applications grounded in real-life scenarios
 
-            Be clear, structured, and concise.
+			Instructions:
+			- Do NOT summarize superficially
+			- The language in which the transcription is used is the one you will respond in.
+			- Avoid redundancy
+			- Prefer depth over quantity
+			- Use clear and precise language
+			- Keep the output well-structured and readable
 
-            Transcription:
-            %s
-            """;
+			Output format (strictly follow):
+
+			Title:
+			(A short and meaningful title that captures the central theme)
+
+			Key Points:
+			- (Concise but important idea 1)
+			- (Concise but important idea 2)
+			- (…)
+
+			Insights:
+			- (Deeper interpretation or non-obvious takeaway)
+			- (…)
+
+			Reflection:
+			(A short paragraph with deeper thinking about the meaning and implications)
+
+			Practical Applications:
+			- (Concrete action or behavior)
+			- (…)
+
+			Transcription:
+			%s
+			""";
+
 
     private final RestTemplate restTemplate;
     private final String apiUrl;
