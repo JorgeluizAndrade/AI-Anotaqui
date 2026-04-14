@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -18,7 +19,15 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class VoskTranscriptionEngine implements TranscriptionEngine {
+	
+	
+	@Value("${transcription.python-path}")
+	private String pythonPath;
 
+	@Value("${transcription.script-path}")
+	private String scriptPath;
+
+	
     private final ObjectMapper objectMapper;
 
     public VoskTranscriptionEngine(ObjectMapper objectMapper) {
@@ -30,8 +39,8 @@ public class VoskTranscriptionEngine implements TranscriptionEngine {
         log.info("Transcription started with Vosk. wavFile={}", wavFilePath);
 
         ProcessBuilder processBuilder = new ProcessBuilder(
-        		 	"/home/jojo/venv/bin/python",
-        		    "/home/jojo/projects/anotaqui/backend/annotations/scripts/transcribe_vosk.py",
+        		 	pythonPath,
+        		 	scriptPath,
                 wavFilePath.toString());
 
         try {

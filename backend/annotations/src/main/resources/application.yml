@@ -38,6 +38,10 @@ springdoc:
     path: /docs
   disable-i18n: true
 
+transcription:
+  python-path: ${PYTHON_PATH}
+  script-path: ${TRANSCRIBE_SCRIPT}
+
 logging:
   level:
     root: INFO

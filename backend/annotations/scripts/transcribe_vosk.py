@@ -21,7 +21,7 @@ def main() -> int:
         emit({"error": f"audio file not found: {wav_path}"})
         return 1
 
-    model_path = os.getenv("VOSK_MODEL_PATH", "/home/jojo/models/vosk-model-pt-fb-v0.1.1-pruned/")
+    model_path = os.getenv("VOSK_MODEL_PATH")
     if not os.path.exists(model_path):
         emit({"error": f"vosk model not found: {model_path}"})
         return 1
