@@ -30,8 +30,8 @@ public class VoskTranscriptionEngine implements TranscriptionEngine {
         log.info("Transcription started with Vosk. wavFile={}", wavFilePath);
 
         ProcessBuilder processBuilder = new ProcessBuilder(
-                "venv/bin/python",
-                "scripts/transcribe_vosk.py",
+        		 	"/home/jojo/venv/bin/python",
+        		    "/home/jojo/projects/anotaqui/backend/annotations/scripts/transcribe_vosk.py",
                 wavFilePath.toString());
 
         try {

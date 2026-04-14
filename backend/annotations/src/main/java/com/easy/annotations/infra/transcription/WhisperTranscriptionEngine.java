@@ -21,7 +21,7 @@ public class WhisperTranscriptionEngine implements ITranscriptionEngine {
 
 			ProcessBuilder processBuilder = new ProcessBuilder(
 
-					"whisper", filePath + fileName, "--model", "base", "--language", "pt", "--output_format", "txt");
+					"venv/bin/activate/", "whisper" , filePath + fileName, "--model", "base", "--language", "pt", "--output_format", "txt");
 			
 			
 			processBuilder.redirectErrorStream(true);
