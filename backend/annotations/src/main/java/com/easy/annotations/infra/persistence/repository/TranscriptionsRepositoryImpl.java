@@ -1,5 +1,7 @@
 package com.easy.annotations.infra.persistence.repository;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 
 import com.easy.annotations.domain.model.Transcriptions;
@@ -21,5 +23,10 @@ public class TranscriptionsRepositoryImpl implements ITranscriptionsRepository {
         TranscriptionsEntity entity = TranscriptionsMapper.toEntity(transcriptions);
         TranscriptionsEntity saved = jpaRepository.save(entity);
         return TranscriptionsMapper.toDomain(saved);
+    }
+
+    @Override
+    public Optional<Transcriptions> findById(Integer id) {
+        return jpaRepository.findById(id).map(TranscriptionsMapper::toDomain);
     }
 }

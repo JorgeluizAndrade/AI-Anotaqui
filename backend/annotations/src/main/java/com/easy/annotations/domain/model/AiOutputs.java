@@ -51,6 +51,9 @@ public class AiOutputs {
 	public void setErr_message(String errMessage ) {
 		this.errMessage = errMessage;
 	}
+	public void setErrMessage(String errMessage) {
+		this.errMessage = errMessage;
+	}
 	public String getPrompt() {
 		return prompt;
 	}
