@@ -3,5 +3,5 @@ package com.easy.annotations.domain.repository;
 import com.easy.annotations.domain.model.AiOutputs;
 
 public interface IAiOutputsRepository {
-	void save(AiOutputs aiOutputs);
+    AiOutputs save(AiOutputs aiOutputs);
 }
