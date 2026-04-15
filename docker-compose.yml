@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend/annotations
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY} 
+      - PYTHON_PATH=/opt/venv/bin/python3
+      - TRANSCRIBE_SCRIPT=/app/scripts/transcribe_vosk.py
+      - VOSK_MODEL_PATH=/app/models 
+    volumes:
+      - ./backend/data:/app/db
+      - ./backend/annotations/upload-dir:/app/upload-dir
+      - /home/jojo/models/vosk-model-pt-fb-v0.1.1-pruned:/app/models:ro
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - BACKEND_URL=http://backend:8080
+    depends_on:
+      - backend
+
