@@ -15,55 +15,9 @@ A solução prioriza execução local, rastreabilidade e simplicidade arquitetur
 
 ---
 
-## 2) Visão arquitetural (Mermaid)
+## 2) Visão arquitetural (Driagrama)
 
-```mermaid
-flowchart LR
-    U[Usuário\nDesktop/Mobile] --> FE[Frontend\nNext.js 14]
-
-    subgraph BE[Backend Spring Boot]
-        API[Controllers REST\n/api/file\n/api/annotations]
-        APP[Application Services / Use Cases]
-        BUS[EventBus + InMemoryQueue]
-        W[Worker Thread]
-        TH[TranscriptionHandler]
-        AH[AIHandler]
-        TC[FfmpegConverter]
-        VE[VoskTranscriptionEngine\n(Python Script)]
-        GE[GeminiAIEngine]
-
-        API --> APP
-        APP --> BUS
-        BUS --> W
-        W --> TH
-        TH --> TC
-        TC --> VE
-        W --> AH
-        AH --> GE
-    end
-
-    subgraph DB[SQLite]
-        UP[(uploads)]
-        TR[(transcriptions)]
-        AO[(ai_outputs)]
-    end
-
-    FE -->|POST /api/upload| API
-    FE -->|GET /api/upload/:filename| API
-    FE -->|GET/PATCH /api/annotations| API
-
-    APP --> UP
-    TH --> TR
-    AH --> AO
-    TR --> AO
-    UP --> TR
-
-    FS[(upload-dir / arquivos WAV e áudio)]:::fs
-    VE --> FS
-    TH --> FS
-
-    classDef fs fill:#0b3d2e,color:#fff,stroke:#2f855a;
-```
+[Diagrama](https://github.com/user-attachments/assets/6afeaefb-b596-43c6-b10a-82086c695304) 
 
 ---
 
