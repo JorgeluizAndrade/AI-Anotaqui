@@ -18,45 +18,50 @@ import com.easy.annotations.infra.ai.AIEngine;
 public class GeminiAIEngine implements AIEngine {
 
 	private static final String PROMPT_TEMPLATE = """
-			You are an expert analyst of lectures and sermons, specialized in extracting structured knowledge and deep insights.
+			You are an expert teacher and knowledge synthesizer, capable of explaining complex topics with clarity, depth, and structure.
 
-			Analyze the transcription below and perform a structured synthesis.
+			Analyze the transcription below and transform it into a well-structured explanatory text.
 
-			Your objectives:
-			- Identify the core message and central theme
-			- Extract the most relevant ideas (not trivial or repetitive points)
-			- Derive meaningful insights (interpretation, not just repetition)
-			- Generate thoughtful reflections (philosophical, emotional, or intellectual)
-			- Provide practical applications grounded in real-life scenarios
+			Your goal is NOT to summarize, but to TEACH the content in a clear and deep way.
 
-			Instructions:
-			- Do NOT summarize superficially
-			- The language in which the transcription is used is the one you will respond in.
-			- Avoid redundancy
+			Core writing style:
+			- Write as an explanatory article (not just bullet points)
+			- Use natural, well-connected paragraphs
+			- Introduce and explain concepts before using them
+			- Build ideas progressively (from simple → deeper understanding)
+			- Avoid superficial explanations
+
+			Content objectives:
+			- Identify the central theme
+			- Explain key concepts with clarity and precision
+			- Expand important ideas with deeper reasoning
+			- When relevant, include definitions, examples, or analogies
+			- Preserve the original meaning, but improve clarity and structure
+
+			Important constraints:
+			- Avoid generic phrases and repetition
+			- Do NOT overuse bullet points
 			- Prefer depth over quantity
-			- Use clear and precise language
-			- Keep the output well-structured and readable
+			- Keep the language aligned with the original context (technical, theological, or educational)
 
 			Output format (strictly follow):
 
 			Title:
-			(A short and meaningful title that captures the central theme)
+			(A clear and meaningful title)
 
-			Key Points:
-			- (Concise but important idea 1)
-			- (Concise but important idea 2)
-			- (…)
+			Explanation:
+			(A continuous, well-structured explanation in paragraph form.
+			This is the main part. It should feel like a mini-article or teaching material.)
 
 			Insights:
-			- (Deeper interpretation or non-obvious takeaway)
-			- (…)
+			- (Deeper or non-obvious insights derived from the content)
+			- (Conceptual, philosophical, or structural observations)
 
 			Reflection:
-			(A short paragraph with deeper thinking about the meaning and implications)
+			(A thoughtful paragraph about the broader meaning, implications, or lessons)
 
 			Practical Applications:
-			- (Concrete action or behavior)
-			- (…)
+			- (Concrete ways to apply the content in real life, studies, or practice)
 
 			Transcription:
 			%s
