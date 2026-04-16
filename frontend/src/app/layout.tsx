@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -9,8 +9,14 @@ const geistSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "AI Anota[qui]",
-  description: "Upload, transcrição e geração de insights de áudio com IA em ambiente local.",
+  title: "AI Anota[qui] - Anotacoes de Audio com IA",
+  description: "Envie audios, acompanhe a transcricao e refine anotacoes geradas por IA. Uma ferramenta para estudos biblicos e reflexoes.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0A0A0A",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -19,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={`${geistSans.variable} antialiased`}>{children}</body>
+    <html lang="pt-BR" className="bg-background">
+      <body className={`${geistSans.variable} font-sans antialiased`}>{children}</body>
     </html>
   );
 }
