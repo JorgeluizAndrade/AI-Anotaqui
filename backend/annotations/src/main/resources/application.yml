@@ -9,8 +9,8 @@ spring:
       connection-timeout: 30000
   servlet:
     multipart:
-    max-file-size: 500MB
-    max-request-size: 500MB
+      max-file-size: 500MB
+      max-request-size: 500MB
 
   jpa:
     database-platform: org.hibernate.community.dialect.SQLiteDialect
@@ -30,6 +30,10 @@ spring:
 
 server:
   port: 8080
+  tomcat:
+    max-swallow-size: -1
+    max-http-form-post-size: -1
+
 
 springdoc:
   api-docs:
