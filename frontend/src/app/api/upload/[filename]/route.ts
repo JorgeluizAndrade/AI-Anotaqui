@@ -9,9 +9,10 @@ type Context = {
 };
 
 export async function GET(_: Request, context: Context) {
+  const params = await context.params;
   try {
     const response = await fetch(
-      `${backendBaseUrl}/api/file/${encodeURIComponent(context.params.filename)}`,
+      `${backendBaseUrl}/api/file/${encodeURIComponent(params.filename)}`,
       {
         method: "GET",
         headers: {
@@ -21,7 +22,7 @@ export async function GET(_: Request, context: Context) {
     );
 
     if (!response.ok) {
-      return NextResponse.json({ message: "Arquivo não encontrado." }, { status: response.status });
+      return NextResponse.json({ message: "Arquivo nao encontrado." }, { status: response.status });
     }
 
     const data = await response.json();
