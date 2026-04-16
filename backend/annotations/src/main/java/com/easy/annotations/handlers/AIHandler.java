@@ -35,6 +35,7 @@ public class AIHandler implements EventHandler<AIRequested> {
 			- Write as an explanatory article (not just bullet points)
 			- Use natural, well-connected paragraphs
 			- Introduce and explain concepts before using them
+			- The language in which the transcription is used is the one you will respond in.
 			- Build ideas progressively (from simple → deeper understanding)
 			- Avoid superficial explanations
 
